@@ -2871,6 +2871,9 @@ body {
     z-index: 2001;
     padding: 20px;
     overflow: hidden; /* Prevent background scroll */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .gallery-details-modal-content {
@@ -3146,6 +3149,9 @@ body {
     z-index: 2500;
     padding: 20px;
     overflow: hidden; /* Prevent background scroll */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .enhanced-details-content {
@@ -3527,6 +3533,9 @@ body {
     z-index: 2500;
     padding: 20px;
     overflow: hidden; /* Prevent background scroll */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .venue-details-content {

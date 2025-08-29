@@ -11,19 +11,22 @@ const debounce = (func, wait) => {
     };
 };
 
-// Modal scroll lock utilities
+// Advanced Modal scroll lock utilities with precise position restoration
 let scrollPosition = 0;
 let isModalOpen = false;
+let savedScrollPosition = 0;
+let scrollRestorationTimeout = null;
 
 function lockBodyScroll() {
     if (isModalOpen) return; // Already locked
     
-    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    // Save current scroll position precisely
+    savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
     isModalOpen = true;
     
     // Apply styles to prevent scrolling
     document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.top = `-${savedScrollPosition}px`;
     document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
     
@@ -32,6 +35,9 @@ function lockBodyScroll() {
     document.documentElement.style.position = 'fixed';
     document.documentElement.style.width = '100%';
     document.documentElement.style.height = '100%';
+    
+    // Store scroll position in sessionStorage as backup
+    sessionStorage.setItem('modalScrollPosition', savedScrollPosition.toString());
 }
 
 function unlockBodyScroll() {
@@ -39,7 +45,7 @@ function unlockBodyScroll() {
     
     isModalOpen = false;
     
-    // Remove styles
+    // Remove styles first
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
@@ -50,12 +56,34 @@ function unlockBodyScroll() {
     document.documentElement.style.width = '';
     document.documentElement.style.height = '';
     
-    // Restore scroll position
-    window.scrollTo(0, scrollPosition);
+    // Clear any existing timeout
+    if (scrollRestorationTimeout) {
+        clearTimeout(scrollRestorationTimeout);
+    }
+    
+    // Restore scroll position with precise timing
+    scrollRestorationTimeout = setTimeout(() => {
+        // Use the enhanced scroll restoration utility
+        restoreScrollPosition();
+        
+        // Clear the stored position
+        sessionStorage.removeItem('modalScrollPosition');
+        
+        // Reset scroll restoration to auto after a short delay
+        setTimeout(() => {
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'auto';
+            }
+        }, 100);
+        
+    }, 10); // Small delay to ensure DOM is ready
 }
 
 // Prevent scroll on modal content when reaching boundaries
 function preventModalScroll(modalElement) {
+    // Store original scroll position for restoration
+    let originalScrollPosition = 0;
+    
     modalElement.addEventListener('wheel', function(e) {
         const modalContent = modalElement.querySelector('.venue-details-content, .gallery-details-modal-content, .enhanced-details-content, .image-only-content');
         if (!modalContent) return;
@@ -90,6 +118,13 @@ function preventModalScroll(modalElement) {
             e.preventDefault();
         }
     }, { passive: false });
+    
+    // Store scroll position when modal opens
+    modalElement.addEventListener('click', function(e) {
+        if (e.target === modalElement) {
+            originalScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        }
+    });
 }
 
 // Cache DOM elements for better performance
@@ -122,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeAnimations();
         initializeContactForm();
         initializeSmoothScrolling();
+        initializeModalKeyHandlers();
     });
 });
 
@@ -131,6 +167,83 @@ function openGoogleMaps() {
     const encodedAddress = encodeURIComponent(address);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
     window.open(googleMapsUrl, '_blank');
+}
+
+// Initialize modal key handlers for ESC key support
+function initializeModalKeyHandlers() {
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            // Close any open modal
+            const openModals = document.querySelectorAll('.gallery-details-modal[style*="display: flex"], .venue-details-modal[style*="display: flex"], .enhanced-details-modal[style*="display: flex"], .image-only-modal[style*="display: flex"]');
+            
+            if (openModals.length > 0) {
+                const modal = openModals[0];
+                if (modal.classList.contains('gallery-details-modal')) {
+                    closeGalleryModal();
+                } else if (modal.classList.contains('venue-details-modal')) {
+                    closeVenueDetailsModal();
+                } else if (modal.classList.contains('enhanced-details-modal')) {
+                    closeEnhancedDetails();
+                } else if (modal.classList.contains('image-only-modal')) {
+                    closeImageOnly();
+                }
+            }
+        }
+    });
+}
+
+// Enhanced modal opening function with scroll position management
+function openModalWithScrollLock(modal, scrollToTop = false) {
+    if (scrollToTop) {
+        // Scroll to top smoothly before opening modal
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Small delay to ensure scroll is complete
+    setTimeout(() => {
+        modal.style.display = 'flex';
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.95)';
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            modal.style.opacity = '1';
+            modal.style.transform = 'scale(1)';
+        });
+        
+        lockBodyScroll();
+    }, scrollToTop ? 300 : 10);
+}
+
+// Additional utility function for precise scroll restoration
+function restoreScrollPosition() {
+    // Multiple fallback methods for scroll restoration
+    const positionToRestore = parseInt(sessionStorage.getItem('modalScrollPosition')) || savedScrollPosition;
+    
+    if (positionToRestore > 0) {
+        // Method 1: Using scrollTo with instant behavior
+        try {
+            window.scrollTo({
+                top: positionToRestore,
+                left: 0,
+                behavior: 'instant'
+            });
+        } catch (e) {
+            // Method 2: Fallback for browsers that don't support 'instant'
+            window.scrollTo(0, positionToRestore);
+        }
+        
+        // Method 3: Additional fallback using scrollTop
+        setTimeout(() => {
+            if (window.pageYOffset !== positionToRestore) {
+                document.documentElement.scrollTop = positionToRestore;
+                document.body.scrollTop = positionToRestore;
+            }
+        }, 50);
+    }
 }
 
 // Mobile Menu Functionality
@@ -870,12 +983,20 @@ function getEventDetails(eventType) {
     };
 }
 
-// Close gallery modal
+// Close gallery modal with enhanced scroll restoration
 function closeGalleryModal() {
     const modal = document.querySelector('.gallery-details-modal');
     if (modal) {
-        modal.style.display = 'none';
-        unlockBodyScroll();
+        // Add fade out animation
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.style.opacity = '';
+            modal.style.transform = '';
+            unlockBodyScroll();
+        }, 150);
     }
 }
 
@@ -895,13 +1016,8 @@ function showImageOnly(imageSrc, imageTitle) {
     img.alt = imageTitle;
     title.textContent = imageTitle;
     
-    // Show modal with smooth animation
-    modal.style.display = 'flex';
-    setTimeout(() => {
-        modal.classList.add('show');
-    }, 10);
-    
-    lockBodyScroll();
+    // Show modal with enhanced animation
+    openModalWithScrollLock(modal);
 }
 
 function createImageOnlyModal() {
@@ -943,11 +1059,15 @@ function createImageOnlyModal() {
 function closeImageOnly() {
     const modal = document.querySelector('.image-only-modal');
     if (modal) {
+        // Add smooth fade out
+        modal.style.opacity = '0';
         modal.classList.remove('show');
+        
         setTimeout(() => {
             modal.style.display = 'none';
+            modal.style.opacity = '';
             unlockBodyScroll();
-        }, 400);
+        }, 300);
     }
 }
 
@@ -962,9 +1082,8 @@ function showEnhancedDetails(type, title, data) {
     // Update modal content
     updateEnhancedDetailsModal(modal, type, title, data);
     
-    // Show modal
-    modal.style.display = 'flex';
-    lockBodyScroll();
+    // Show modal with enhanced animation
+    openModalWithScrollLock(modal);
 }
 
 function createEnhancedDetailsModal() {
@@ -1103,8 +1222,16 @@ function updateEnhancedDetailsModal(modal, type, title, data) {
 function closeEnhancedDetails() {
     const modal = document.querySelector('.enhanced-details-modal');
     if (modal) {
-        modal.style.display = 'none';
-        unlockBodyScroll();
+        // Add smooth fade out animation
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.style.opacity = '';
+            modal.style.transform = '';
+            unlockBodyScroll();
+        }, 150);
     }
 }
 
@@ -1396,9 +1523,8 @@ function showVenueDetailsModal(venueName, venueType) {
     // Update modal content
     updateVenueDetailsContent(modal, venueData);
     
-    // Show modal
-    modal.style.display = 'flex';
-    lockBodyScroll();
+    // Show modal with enhanced animation
+    openModalWithScrollLock(modal);
 }
 
 function createVenueDetailsModal() {
@@ -1647,8 +1773,16 @@ function getVenueDetailsByName(venueName, venueType) {
 function closeVenueDetailsModal() {
     const modal = document.querySelector('.venue-details-modal');
     if (modal) {
-        modal.style.display = 'none';
-        unlockBodyScroll();
+        // Add smooth fade out animation
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.style.opacity = '';
+            modal.style.transform = '';
+            unlockBodyScroll();
+        }, 150);
     }
 }
 
@@ -1691,9 +1825,8 @@ function showVendorDetailsModal(vendorName, vendorType) {
     // Update modal content
     updateVendorDetailsContent(modal, vendorData);
     
-    // Show modal
-    modal.style.display = 'flex';
-    lockBodyScroll();
+    // Show modal with enhanced animation
+    openModalWithScrollLock(modal);
 }
 
 function updateVendorDetailsContent(modal, vendorData) {
