@@ -2052,6 +2052,44 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeVendorEnhancements();
 });
 
+// Function to play video when clicked
+function playVideo(videoContainer) {
+    const video = videoContainer.querySelector('video');
+    const playOverlay = videoContainer.querySelector('.video-play-overlay');
+    
+    if (video) {
+        // Pause all other videos first
+        const allVideos = document.querySelectorAll('video');
+        allVideos.forEach(v => {
+            if (v !== video) {
+                v.pause();
+                v.currentTime = 0;
+            }
+        });
+        
+        // Hide all play overlays
+        const allOverlays = document.querySelectorAll('.video-play-overlay');
+        allOverlays.forEach(overlay => {
+            if (overlay !== playOverlay) {
+                overlay.style.display = 'none';
+            }
+        });
+        
+        // Toggle current video
+        if (video.paused) {
+            video.play();
+            if (playOverlay) {
+                playOverlay.style.display = 'none';
+            }
+        } else {
+            video.pause();
+            if (playOverlay) {
+                playOverlay.style.display = 'flex';
+            }
+        }
+    }
+}
+
 // Export functions for external use
 window.BREvents = {
     showDropdown,
@@ -2064,5 +2102,6 @@ window.BREvents = {
     showImageOnly,
     closeImageOnly,
     showEnhancedDetails,
-    closeEnhancedDetails
+    closeEnhancedDetails,
+    playVideo
 };

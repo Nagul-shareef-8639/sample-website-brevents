@@ -812,15 +812,16 @@
                 </div>
                 
                 <div class="gallery-tabs" data-aos="fade-up" data-aos-delay="100">
-                    <button class="tab-btn active" data-category="all">All Events</button>
+                    <button class="tab-btn active" data-category="all">All Images</button>
                     <button class="tab-btn" data-category="weddings">Weddings</button>
                     <button class="tab-btn" data-category="corporate">Corporate</button>
                     <button class="tab-btn" data-category="birthdays">Birthdays</button>
+                    <button class="tab-btn" data-category="videos">Videos</button>
                 </div>
                 
                 <div class="gallery-grid">
                     <!-- Wedding Images -->
-                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="200" onclick="showImageOnly('Assets/Images/Gallery section/Images/1.png', 'Elegant Wedding Ceremony')">
                         <img src="Assets/Images/Gallery section/Images/1.png" alt="Wedding Event">
                         <div class="image-click-hint">Click Image</div>
                         <div class="gallery-overlay">
@@ -830,7 +831,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="300" onclick="showImageOnly('Assets/Images/Gallery section/Images/4.png', 'Wedding Reception')">
                         <img src="Assets/Images/Gallery section/Images/4.png" alt="Wedding Reception">
                         <div class="gallery-overlay">
                             <h4>Wedding Reception</h4>
@@ -839,7 +840,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="400" onclick="showImageOnly('Assets/Images/Gallery section/Images/2.png', 'Wedding Event Setup')">
                         <img src="Assets/Images/Gallery section/Images/2.png" alt="Wedding Event">
                         <div class="gallery-overlay">
                             <h4>Wedding Event Setup</h4>
@@ -848,7 +849,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="gallery-item" data-category="weddings" data-aos="zoom-in" data-aos-delay="500" onclick="showImageOnly('Assets/Images/Gallery section/Images/3.png', 'Engagement Celebration')">
                         <img src="Assets/Images/Gallery section/Images/3.png" alt="Engagement Celebration">
                         <div class="gallery-overlay">
                             <h4>Engagement Celebration</h4>
@@ -859,7 +860,7 @@
                     
                     <!-- Corporate Images -->
                     
-                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="700" onclick="showImageOnly('Assets/Images/Gallery section/Images/5.png', 'Business Event Management')">
                         <img src="Assets/Images/Gallery section/Images/5.png" alt="Business Event">
                         <div class="gallery-overlay">
                             <h4>Business Event Management</h4>
@@ -868,7 +869,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="800" onclick="showImageOnly('Assets/Images/Gallery section/Images/8.png', 'Corporate Birthday Setup')">
                         <img src="Assets/Images/Gallery section/Images/8.png" alt="Corporate Meeting">
                         <div class="gallery-overlay">
                             <h4>Corporate Birthday Setup</h4>
@@ -877,7 +878,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="900">
+                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="900" onclick="showImageOnly('Assets/Images/Gallery section/Images/10.png', 'Product Launch')">
                         <img src="Assets/Images/Gallery section/Images/10.png" alt="Corporate Event">
                         <div class="gallery-overlay">
                             <h4>Product Launch</h4>
@@ -886,7 +887,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="1000">
+                    <div class="gallery-item" data-category="corporate" data-aos="zoom-in" data-aos-delay="1000" onclick="showImageOnly('Assets/Images/Gallery section/Images/9.png', 'Business Event Setup')">
                         <img src="Assets/Images/Gallery section/Images/9.png" alt="Business Event">
                         <div class="gallery-overlay">
                             <h4>Business Event Setup</h4>
@@ -897,7 +898,7 @@
                     
                     <!-- Birthday Images -->
                     
-                    <div class="gallery-item" data-category="birthdays" data-aos="zoom-in" data-aos-delay="1100">
+                    <div class="gallery-item" data-category="birthdays" data-aos="zoom-in" data-aos-delay="1100" onclick="showImageOnly('Assets/Images/Gallery section/Images/6.png', 'Birthday Event Planning')">
                         <img src="Assets/Images/Gallery section/Images/6.png" alt="Birthday Celebration">
                         <div class="gallery-overlay">
                             <h4>Birthday Event Planning</h4>
@@ -906,7 +907,7 @@
                         </div>
                     </div>
                     
-                    <div class="gallery-item" data-category="birthdays" data-aos="zoom-in" data-aos-delay="1200">
+                    <div class="gallery-item" data-category="birthdays" data-aos="zoom-in" data-aos-delay="1200" onclick="showImageOnly('Assets/Images/Gallery section/Images/7.png', 'Birthday Event Decoration')">
                         <img src="Assets/Images/Gallery section/Images/7.png" alt="Birthday Event">
                         <div class="gallery-overlay">
                             <h4>Birthday Event Decoration</h4>
@@ -915,6 +916,313 @@
                         </div>
                     </div>
                     
+                    <!-- All Images Tab - All 44 Images from Gallery section/Images folder -->
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1300" onclick="showImageOnly('Assets/Images/Gallery section/Images/1.png')">
+                        <img src="Assets/Images/Gallery section/Images/1.png" alt="Gallery Image 1">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1350" onclick="showImageOnly('Assets/Images/Gallery section/Images/2.png')">
+                        <img src="Assets/Images/Gallery section/Images/2.png" alt="Gallery Image 2">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1400" onclick="showImageOnly('Assets/Images/Gallery section/Images/3.png')">
+                        <img src="Assets/Images/Gallery section/Images/3.png" alt="Gallery Image 3">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1450" onclick="showImageOnly('Assets/Images/Gallery section/Images/4.png')">
+                        <img src="Assets/Images/Gallery section/Images/4.png" alt="Gallery Image 4">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1500" onclick="showImageOnly('Assets/Images/Gallery section/Images/5.png')">
+                        <img src="Assets/Images/Gallery section/Images/5.png" alt="Gallery Image 5">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1550" onclick="showImageOnly('Assets/Images/Gallery section/Images/6.png')">
+                        <img src="Assets/Images/Gallery section/Images/6.png" alt="Gallery Image 6">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1600" onclick="showImageOnly('Assets/Images/Gallery section/Images/7.png')">
+                        <img src="Assets/Images/Gallery section/Images/7.png" alt="Gallery Image 7">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1650" onclick="showImageOnly('Assets/Images/Gallery section/Images/8.png')">
+                        <img src="Assets/Images/Gallery section/Images/8.png" alt="Gallery Image 8">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1700" onclick="showImageOnly('Assets/Images/Gallery section/Images/9.png')">
+                        <img src="Assets/Images/Gallery section/Images/9.png" alt="Gallery Image 9">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1750" onclick="showImageOnly('Assets/Images/Gallery section/Images/10.png')">
+                        <img src="Assets/Images/Gallery section/Images/10.png" alt="Gallery Image 10">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1800" onclick="showImageOnly('Assets/Images/Gallery section/Images/11.png')">
+                        <img src="Assets/Images/Gallery section/Images/11.png" alt="Gallery Image 11">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1850" onclick="showImageOnly('Assets/Images/Gallery section/Images/12.png')">
+                        <img src="Assets/Images/Gallery section/Images/12.png" alt="Gallery Image 12">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1900" onclick="showImageOnly('Assets/Images/Gallery section/Images/13.png')">
+                        <img src="Assets/Images/Gallery section/Images/13.png" alt="Gallery Image 13">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="1950" onclick="showImageOnly('Assets/Images/Gallery section/Images/14.png')">
+                        <img src="Assets/Images/Gallery section/Images/14.png" alt="Gallery Image 14">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2000" onclick="showImageOnly('Assets/Images/Gallery section/Images/15.png')">
+                        <img src="Assets/Images/Gallery section/Images/15.png" alt="Gallery Image 15">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2050" onclick="showImageOnly('Assets/Images/Gallery section/Images/16.png')">
+                        <img src="Assets/Images/Gallery section/Images/16.png" alt="Gallery Image 16">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2100" onclick="showImageOnly('Assets/Images/Gallery section/Images/17.png')">
+                        <img src="Assets/Images/Gallery section/Images/17.png" alt="Gallery Image 17">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2150" onclick="showImageOnly('Assets/Images/Gallery section/Images/18.png')">
+                        <img src="Assets/Images/Gallery section/Images/18.png" alt="Gallery Image 18">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2200" onclick="showImageOnly('Assets/Images/Gallery section/Images/19.png')">
+                        <img src="Assets/Images/Gallery section/Images/19.png" alt="Gallery Image 19">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2250" onclick="showImageOnly('Assets/Images/Gallery section/Images/20.png')">
+                        <img src="Assets/Images/Gallery section/Images/20.png" alt="Gallery Image 20">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2300" onclick="showImageOnly('Assets/Images/Gallery section/Images/21.png')">
+                        <img src="Assets/Images/Gallery section/Images/21.png" alt="Gallery Image 21">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2350" onclick="showImageOnly('Assets/Images/Gallery section/Images/22.png')">
+                        <img src="Assets/Images/Gallery section/Images/22.png" alt="Gallery Image 22">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2400" onclick="showImageOnly('Assets/Images/Gallery section/Images/23.png')">
+                        <img src="Assets/Images/Gallery section/Images/23.png" alt="Gallery Image 23">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2450" onclick="showImageOnly('Assets/Images/Gallery section/Images/24.png')">
+                        <img src="Assets/Images/Gallery section/Images/24.png" alt="Gallery Image 24">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2500" onclick="showImageOnly('Assets/Images/Gallery section/Images/25.png')">
+                        <img src="Assets/Images/Gallery section/Images/25.png" alt="Gallery Image 25">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2550" onclick="showImageOnly('Assets/Images/Gallery section/Images/26.png')">
+                        <img src="Assets/Images/Gallery section/Images/26.png" alt="Gallery Image 26">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2600" onclick="showImageOnly('Assets/Images/Gallery section/Images/27.png')">
+                        <img src="Assets/Images/Gallery section/Images/27.png" alt="Gallery Image 27">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2650" onclick="showImageOnly('Assets/Images/Gallery section/Images/28.png')">
+                        <img src="Assets/Images/Gallery section/Images/28.png" alt="Gallery Image 28">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2700" onclick="showImageOnly('Assets/Images/Gallery section/Images/29.png')">
+                        <img src="Assets/Images/Gallery section/Images/29.png" alt="Gallery Image 29">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2750" onclick="showImageOnly('Assets/Images/Gallery section/Images/30.png')">
+                        <img src="Assets/Images/Gallery section/Images/30.png" alt="Gallery Image 30">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2800" onclick="showImageOnly('Assets/Images/Gallery section/Images/31.png')">
+                        <img src="Assets/Images/Gallery section/Images/31.png" alt="Gallery Image 31">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2850" onclick="showImageOnly('Assets/Images/Gallery section/Images/32.png')">
+                        <img src="Assets/Images/Gallery section/Images/32.png" alt="Gallery Image 32">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2900" onclick="showImageOnly('Assets/Images/Gallery section/Images/33.png')">
+                        <img src="Assets/Images/Gallery section/Images/33.png" alt="Gallery Image 33">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="2950" onclick="showImageOnly('Assets/Images/Gallery section/Images/34.png')">
+                        <img src="Assets/Images/Gallery section/Images/34.png" alt="Gallery Image 34">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3000" onclick="showImageOnly('Assets/Images/Gallery section/Images/35.png')">
+                        <img src="Assets/Images/Gallery section/Images/35.png" alt="Gallery Image 35">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3050" onclick="showImageOnly('Assets/Images/Gallery section/Images/36.png')">
+                        <img src="Assets/Images/Gallery section/Images/36.png" alt="Gallery Image 36">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3100" onclick="showImageOnly('Assets/Images/Gallery section/Images/37.png')">
+                        <img src="Assets/Images/Gallery section/Images/37.png" alt="Gallery Image 37">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3150" onclick="showImageOnly('Assets/Images/Gallery section/Images/38.png')">
+                        <img src="Assets/Images/Gallery section/Images/38.png" alt="Gallery Image 38">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3200" onclick="showImageOnly('Assets/Images/Gallery section/Images/39.png')">
+                        <img src="Assets/Images/Gallery section/Images/39.png" alt="Gallery Image 39">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3250" onclick="showImageOnly('Assets/Images/Gallery section/Images/40.png')">
+                        <img src="Assets/Images/Gallery section/Images/40.png" alt="Gallery Image 40">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3300" onclick="showImageOnly('Assets/Images/Gallery section/Images/41.png')">
+                        <img src="Assets/Images/Gallery section/Images/41.png" alt="Gallery Image 41">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3350" onclick="showImageOnly('Assets/Images/Gallery section/Images/42.png')">
+                        <img src="Assets/Images/Gallery section/Images/42.png" alt="Gallery Image 42">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3400" onclick="showImageOnly('Assets/Images/Gallery section/Images/43.png')">
+                        <img src="Assets/Images/Gallery section/Images/43.png" alt="Gallery Image 43">
+                    </div>
+                    
+                    <div class="gallery-item" data-category="all" data-aos="zoom-in" data-aos-delay="3450" onclick="showImageOnly('Assets/Images/Gallery section/Images/44.png')">
+                        <img src="Assets/Images/Gallery section/Images/44.png" alt="Gallery Image 44">
+                    </div>
+                    
+                    <!-- Videos Tab - All 13 Videos from Gallery section/videos folder -->
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3500" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3550" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3600" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3650" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3700" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 5.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3750" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 6.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3800" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 7.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3850" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 8.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3900" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 9.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="3950" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 10.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="4000" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 11.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="4050" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 12.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item video-item" data-category="videos" data-aos="zoom-in" data-aos-delay="4100" onclick="playVideo(this)">
+                        <video preload="metadata" poster="">
+                            <source src="Assets/Images/Gallery section/videos/video 13.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
