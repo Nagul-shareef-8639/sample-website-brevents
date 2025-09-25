@@ -610,8 +610,65 @@ function initializeHeroSlider() {
 function initializeGallery() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const seeMoreContainer = document.getElementById('gallery-see-more-container');
+    const seeMoreBtn = document.getElementById('gallery-see-more-btn');
     
     if (tabBtns.length === 0 || galleryItems.length === 0) return;
+    
+    // Track if all items are shown
+    let allItemsShown = false;
+    
+    // Function to show only first 6 items for "all" category
+    function showLimitedItems() {
+        const allItems = document.querySelectorAll('.gallery-item[data-category="all"]');
+        allItems.forEach((item, index) => {
+            if (index < 6) {
+                item.style.display = 'block';
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+            } else {
+                item.style.display = 'none';
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.8)';
+            }
+        });
+        
+        // Show see more button if there are more than 6 items
+        if (allItems.length > 6) {
+            seeMoreContainer.style.display = 'flex';
+            allItemsShown = false;
+        } else {
+            seeMoreContainer.style.display = 'none';
+        }
+    }
+    
+    // Function to show all items
+    function showAllItems() {
+        const allItems = document.querySelectorAll('.gallery-item[data-category="all"]');
+        allItems.forEach(item => {
+            item.style.display = 'block';
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+            }, 100);
+        });
+        
+        seeMoreContainer.style.display = 'none';
+        allItemsShown = true;
+    }
+    
+    // See More button functionality
+    if (seeMoreBtn) {
+        seeMoreBtn.addEventListener('click', () => {
+            if (!allItemsShown) {
+                showAllItems();
+                seeMoreBtn.innerHTML = '<i class="fas fa-minus"></i><span>Show Less</span>';
+            } else {
+                showLimitedItems();
+                seeMoreBtn.innerHTML = '<i class="fas fa-plus"></i><span>See More Images & Videos</span>';
+            }
+        });
+    }
     
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -621,14 +678,24 @@ function initializeGallery() {
             tabBtns.forEach(tab => tab.classList.remove('active'));
             btn.classList.add('active');
             
+            // Reset see more state
+            allItemsShown = false;
+            if (seeMoreBtn) {
+                seeMoreBtn.innerHTML = '<i class="fas fa-plus"></i><span>See More Images & Videos</span>';
+            }
+            
             // Filter gallery items
             galleryItems.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
+                if (category === 'all') {
+                    // For "all" category, show limited items initially
+                    showLimitedItems();
+                } else if (item.dataset.category === category) {
                     item.style.display = 'block';
                     setTimeout(() => {
                         item.style.opacity = '1';
                         item.style.transform = 'scale(1)';
                     }, 100);
+                    seeMoreContainer.style.display = 'none';
                 } else {
                     item.style.opacity = '0';
                     item.style.transform = 'scale(0.8)';
@@ -639,6 +706,12 @@ function initializeGallery() {
             });
         });
     });
+    
+    // Initialize with "all" tab active
+    const allTab = document.querySelector('.tab-btn[data-category="all"]');
+    if (allTab) {
+        allTab.click();
+    }
 }
 
 // Animation on Scroll
